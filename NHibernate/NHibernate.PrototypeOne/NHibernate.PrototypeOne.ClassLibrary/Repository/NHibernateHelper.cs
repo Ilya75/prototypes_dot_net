@@ -7,8 +7,9 @@ using NHibernate.Cfg;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Mapping.ByCode;
 using NHibernate.PrototypeOne.ClassLibrary.Mapping;
+using NHibernate.PrototypeOne.ClassLibrary.Repository;
 
-namespace NHibernate.PrototypeOne.Console.Repository
+namespace NHibernate.PrototypeOne.ClassLibrary.Repository
 {
     public class NHibernateHelper
     {
@@ -25,7 +26,7 @@ namespace NHibernate.PrototypeOne.Console.Repository
                                             .Configure();
 
                     var mapper = new ModelMapper();
-                    mapper.AddMappings(new List<System.Type> { typeof(BloggerMap) });
+                    mapper.AddMappings(new List<System.Type> { typeof(BloggerMap), typeof(BloggerDataMap) });
 
                     _configuration.AddDeserializedMapping(mapper.CompileMappingForAllExplicitlyAddedEntities(), null);
                 }

@@ -14,12 +14,13 @@ namespace NHibernate.PrototypeOne.Tests.MappingTests
     public class BloggerMapTest
     {
         [Fact]
-        public void Can_Generate_Blogger_XmlMapping()
+        public void Can_Generate_Blogger_Tables_XmlMapping()
         {
             // Arrange
             var result = "";
             var mapper = new ModelMapper();
             mapper.AddMapping<BloggerMap>();
+            mapper.AddMapping<BloggerDataMap>();
 
             // Act
             var mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();

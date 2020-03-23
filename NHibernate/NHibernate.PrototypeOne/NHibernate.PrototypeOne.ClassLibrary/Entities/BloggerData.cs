@@ -8,10 +8,10 @@ namespace NHibernate.PrototypeOne.ClassLibrary.Entities
 {
     public class BloggerData
     {
-        public virtual Guid Id { get; set; }
-        public virtual Guid BloggerId { get; set; }
+        public virtual Guid PostId { get; set; }
         public virtual string Post { get; set; }
         public virtual DateTime DatePosted { get; set; }
         public virtual string Topic { get; set; }
+        public virtual Blogger Blogger { get; set; }
     }
 }

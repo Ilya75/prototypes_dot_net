@@ -13,10 +13,17 @@ namespace NHibernate.PrototypeOne.ClassLibrary.Mapping
     {
         public BloggerMap()
         {
-            Id(x => x.Id, m => m.Generator(Generators.GuidComb));
+            Id(x => x.BloggerId, m => m.Generator(Generators.GuidComb));
             Property(x => x.Name);
             Property(x => x.Url);
             Property(x => x.Rank);
+            List(x => x.Posts, x =>
+            {
+                x.Key(k => k.Column("PostId"));
+                x.Index(i => i.Column("DateCreated"));
+                x.Cascade(Cascade.All | Cascade.DeleteOrphans);
+            }, x => x.OneToMany()
+            );
         }
     }
 }

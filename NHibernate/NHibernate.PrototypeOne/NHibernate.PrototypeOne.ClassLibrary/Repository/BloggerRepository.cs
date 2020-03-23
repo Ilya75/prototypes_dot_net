@@ -10,7 +10,7 @@ using NHibernate.PrototypeOne.ClassLibrary.Entities;
 using NHibernate.PrototypeOne.ClassLibrary.Mapping;
 using NHibernate.PrototypeOne.Console.Interfaces;
 
-namespace NHibernate.PrototypeOne.Console.Repository
+namespace NHibernate.PrototypeOne.ClassLibrary.Repository
 {
     public class BloggerRepository : IBloggerRepository
     {
