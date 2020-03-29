@@ -19,7 +19,11 @@ namespace NHibernate.PrototypeOne.ClassLibrary.Mapping
             Property(x => x.Rank);
             List(x => x.Posts, x =>
             {
-                x.Key(k => k.Column("PostId"));
+                x.Key(k =>
+                {
+                    k.Column("BloggerId");
+                    k.ForeignKey("PostId");
+                });
                 x.Index(i => i.Column("DateCreated"));
                 x.Cascade(Cascade.All | Cascade.DeleteOrphans);
             }, x => x.OneToMany()

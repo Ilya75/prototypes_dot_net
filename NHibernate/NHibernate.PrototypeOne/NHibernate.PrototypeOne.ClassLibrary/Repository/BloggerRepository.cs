@@ -30,6 +30,24 @@ namespace NHibernate.PrototypeOne.ClassLibrary.Repository
                 return session.Get<Blogger>(id);
         }
 
+        public Blogger GetByName(string name)
+        {
+            Blogger blogger = null;
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                blogger = session.QueryOver<Blogger>().Where(b => b.Name == name).SingleOrDefault();
+                // adding posts;
+                NHibernateUtil.Initialize(blogger.Posts);
+            }
+            return blogger;
+        }
+
+        public IList<BloggerData> GetPosts(Guid id)
+        {
+            using (ISession session = NHibernateHelper.OpenSession())
+                return session.Get<Blogger>(id).Posts;
+        }
+
         public long RowCount()
         {
             using (ISession session = NHibernateHelper.OpenSession())

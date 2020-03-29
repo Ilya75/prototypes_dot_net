@@ -9,7 +9,7 @@ namespace NHibernate.PrototypeOne.ClassLibrary.Interfaces
 {
     public interface IBloggerDataRepository
     {
-        BloggerData Get(Guid id);
+        BloggerData Get(Guid bloggerId);
         void Save(BloggerData data);
         void Update(BloggerData data);
         void Delete(BloggerData data);

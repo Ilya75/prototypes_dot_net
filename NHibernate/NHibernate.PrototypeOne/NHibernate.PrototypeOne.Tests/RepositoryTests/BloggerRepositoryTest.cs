@@ -29,7 +29,16 @@ namespace NHibernate.PrototypeOne.Tests.RepositoryTests
         public void CanSaveBlogger()
         {
             // Arrange & Act
-            _bloggerRepository.Save(new Blogger { Name = "Test Blogger", Rank = 0, Url = "http://test.org" });
+            var blogger = new Blogger
+            {
+                Name = "Test Blogger",
+                Rank = 0,
+                Url = "http://test.org"
+            };
+      
+            blogger.Posts = GetRandomPosts();
+
+            _bloggerRepository.Save(blogger);
 
             // Assert
             Assert.Equal(1, _bloggerRepository.RowCount());
@@ -45,6 +54,23 @@ namespace NHibernate.PrototypeOne.Tests.RepositoryTests
             // Assert
             var result = _bloggerRepository.Get(blogger.BloggerId);
             Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void CanGetBloggerByName()
+        {
+            // Arrange & Act
+            var bloggerName = "Charli";
+            var blogger = new Blogger { Name = bloggerName, Rank = 0, Url = "http://charli.org" };
+            blogger.Posts = GetRandomPosts();
+            var nPosts = blogger.Posts.Count;
+
+            _bloggerRepository.Save(blogger);
+
+            // Assert
+            var result = _bloggerRepository.GetByName(bloggerName);
+            Assert.NotNull(result);
+            Assert.Equal(nPosts, result.Posts.Count);
         }
 
         [Fact]
@@ -86,6 +112,25 @@ namespace NHibernate.PrototypeOne.Tests.RepositoryTests
         {
             if (File.Exists("test.db"))
                 File.Delete("test.db");
+        }
+
+        private List<BloggerData> GetRandomPosts()
+        {
+            var posts = new List<BloggerData>
+            {
+                new BloggerData
+                {
+                    DatePosted = DateTime.Now,
+                    Post = "Just some text", Topic = "test"
+                },
+                new BloggerData
+                {
+                    DatePosted = DateTime.Now,
+                    Post = "Just some another text", Topic = "test"
+                }
+             };
+
+            return posts;
         }
     }
 }

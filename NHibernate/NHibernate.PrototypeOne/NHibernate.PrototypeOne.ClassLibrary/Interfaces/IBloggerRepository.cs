@@ -10,6 +10,8 @@ namespace NHibernate.PrototypeOne.Console.Interfaces
     public interface IBloggerRepository
     {
         Blogger Get(Guid id);
+        Blogger GetByName(string name);
+        IList<BloggerData> GetPosts(Guid id);
         void Save(Blogger blogger);
         void Update(Blogger blogger);
         void Delete(Blogger blogger);

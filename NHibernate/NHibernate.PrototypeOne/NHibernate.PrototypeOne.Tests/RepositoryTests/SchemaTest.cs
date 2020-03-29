@@ -11,15 +11,15 @@ namespace NHibernate.PrototypeOne.Tests.RepositoryTests
 {
     public class SchemaTest
     {
-        //[Fact(Skip ="Used only for manual tests")]
-        [Fact]
+        [Fact(Skip ="Used only for manual tests")]
+        //[Fact]
         public void CanGenerateSchema()
         {
             var schemaUpdate = new SchemaUpdate(NHibernateHelper.Configuration);
             schemaUpdate.Execute(true, true);
         }
 
-        [Fact]
+        [Fact(Skip = "Used only for manual tests")]
         public void CanGenerateScript()
         {
             var schemaExport = new SchemaExport(NHibernateHelper.Configuration);

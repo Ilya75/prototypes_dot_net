@@ -20,7 +20,8 @@ namespace NHibernate.PrototypeOne.ClassLibrary.Mapping
             ManyToOne(x => x.Blogger, x =>
             {
                 x.Column("BloggerId");
-                x.Cascade(Cascade.Persist);
+                x.Cascade(Cascade.None);
+                x.ForeignKey("BloggerId");
             });
         }
     }

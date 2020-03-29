@@ -12,27 +12,44 @@ namespace NHibernate.PrototypeOne.ClassLibrary.Repository
     {
         public void Delete(BloggerData data)
         {
-            throw new NotImplementedException();
+            using (ISession session = NHibernateHelper.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                session.Delete(data);
+                transaction.Commit();
+            }
         }
 
         public BloggerData Get(Guid id)
         {
-            throw new NotImplementedException();
+            using (ISession session = NHibernateHelper.OpenSession())
+                return session.Get<BloggerData>(id);
         }
 
         public long RowCount()
         {
-            throw new NotImplementedException();
+            using (ISession session = NHibernateHelper.OpenSession())
+                return session.QueryOver<Blogger>().RowCountInt64();
         }
 
         public void Save(BloggerData data)
         {
-            throw new NotImplementedException();
+            using (ISession session = NHibernateHelper.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                session.Save(data);
+                transaction.Commit();
+            }
         }
 
         public void Update(BloggerData data)
         {
-            throw new NotImplementedException();
+            using (ISession session = NHibernateHelper.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                session.Update(data);
+                transaction.Commit();
+            }
         }
     }
 }
